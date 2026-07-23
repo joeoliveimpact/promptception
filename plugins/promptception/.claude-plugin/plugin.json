@@ -1,0 +1,23 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "promptception",
+  "description": "Turns a messy, spoken-style brain-dump into a clear, complete prompt, then runs it. Talk or dictate what you want (half-sentences fine) and Promptception builds the prompt you would have written if you were a prompt expert, shows it to you, asks only the questions that close real gaps, and executes on your go. Beginner-first: it teaches prompting by showing, not lecturing, and offers to build a full plan when the ask is bigger than one prompt. One command: /promptception.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Joe Olive",
+    "email": "joe@engineforimpact.com"
+  },
+  "homepage": "https://github.com/joeoliveimpact/revxl-marketplace/tree/main/plugins/promptception",
+  "license": "MIT",
+  "keywords": [
+    "prompt",
+    "prompting",
+    "prompt-builder",
+    "prompt-engineering",
+    "reverse-prompt",
+    "beginner",
+    "teaching",
+    "productivity",
+    "utility"
+  ]
+}
