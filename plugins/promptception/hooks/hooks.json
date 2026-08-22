@@ -1,0 +1,17 @@
+{
+  "description": "Injects a reminder to invoke the orchestrator-mode or premortem skill when the user's prompt contains one of their trigger phrases.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/orchestrator-trigger.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
