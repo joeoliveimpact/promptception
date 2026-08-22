@@ -31,6 +31,16 @@ Start any message with **"promptception:"** and just talk, or run `/promptceptio
 - **Bigger than one prompt?** If your dump is really several jobs (a launch, a week of content), it offers to build a **plan** instead ... every step laid out, adjusted by highlighting the text you want changed. One review pass, no ping-pong.
 - Every question comes with the *why*, so the prompting lesson is built into the ask. Say **"standard mode"** to skip the explanations; **"beginner mode"** brings them back.
 
+## Also inside (new since 0.1.0)
+
+The plugin has grown well past one skill. Same install, no extra steps:
+
+- **Four builders** for Claude Code's newest commands ... `/goal-builder` (a finish line the engine can actually settle), `/loop-builder` (watch, act, and know when to STOP), `/schedule-builder` (routines that survive 6am with nobody watching), and `/plan-builder` (jobs too big for one prompt: researched first, stress-tested before you see it, then run with a builder and an independent checker).
+- **Orchestrator Mode** ... big cross-system work runs through a crew of specialist subagents, and nothing gets built on an unverified claim.
+- **Premortem** ... hand it any draft plan and it assumes the plan already failed, then works backwards to find why, before you ship.
+
+Each builder teaches as it works, and every one tells you when your job is really a different tool's job before it builds anything.
+
 ## Want more like this?
 
 Join the free community — **[Mastering Claude for Coaches](https://www.skool.com/mastering-claude-for-coaches/about)** — where tools like this drop first.
