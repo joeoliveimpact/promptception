@@ -12,8 +12,9 @@ here without firing anything. **Where it does, one more question joins the Step 
 rules: `${CLAUDE_PLUGIN_ROOT}/references/asking-questions.md`, popup first, the same question as
 plain text where the popup isn't available):
 
-> *"I can run this whole planning pass in plan mode ... locked read-only until you approve the
-> finished plan, so nothing can get built early. Want that?"*
+> *"I can put this behind plan mode ... I'll research and draft first, then lock myself
+> read-only the moment the plan is ready, so nothing can get built until you approve it.
+> Want that?"*
 
 **Their consent is the tool's own requirement, not a courtesy.** Entering plan mode takes their
 yes; the popup is simply how that yes gets asked for. Never enter it silently, and never treat
@@ -29,15 +30,27 @@ In plan mode the harness designates a plan file, and it is the one file the sess
 **That is the design, not a limitation to route around: write the plan there.** It is the same
 one document, every step its own ready-to-run block, that the engine file describes.
 
-Anything that would otherwise land in `output/orchestrator-mode/` lands **after approval**,
-during execution, when the session is no longer read-only. Nothing is lost, it just arrives on
-the far side of the gate.
+Steps 1 to 5 run before the call, so the crew's findings and working artifacts land in
+`output/orchestrator-mode/` as normal. From the call onward the session is read-only apart from
+the plan file, so anything still unwritten waits and arrives during execution. Nothing is lost,
+it just arrives on the far side of the gate.
 
-### Step 6 - where plan mode is active, ExitPlanMode IS the gate
+### Step 6 - enter, write, exit
 
-`ExitPlanMode` presents the finished plan and requires their approval before anything can run.
-That is exactly the pause Step 6 exists to create, enforced by the tool instead of by prose, so
-don't stack a hand-rolled pause on top of it.
+**This is where `EnterPlanMode` actually gets called.** Their yes at Step 0 changes nothing on
+its own; the tool is what changes the mode. A pass that collected a yes and never fired the tool
+has been describing a mode it never entered.
+
+1. **Call `EnterPlanMode`.** The harness answers by designating the plan file.
+2. **Write the finished plan into that designated file.** It does not exist before the call,
+   which is exactly why the call cannot come earlier.
+3. **Call `ExitPlanMode`.** It presents the plan and requires their approval before anything can
+   run. That is exactly the pause Step 6 exists to create, enforced by the tool instead of by
+   prose, so don't stack a hand-rolled pause on top of it.
+
+**Never call `EnterPlanMode` before Step 6.** Everything Steps 1 to 5 produce ... the silent
+skeleton, the crew's findings, the premortem ... is written while the session can still write
+anywhere, and entering early costs the skill the ability to write its own working artifacts.
 
 **Where the tool is absent, the skill's own pause IS the gate, and it isn't optional.** Some
 surfaces have no design-before-acting phase at all, so a gate handed to one may simply not exist,

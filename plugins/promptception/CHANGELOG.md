@@ -2,6 +2,16 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.3.2] - 2026-08-23
+
+### Fixed
+- **plan-builder asked to enter plan mode and then never entered it.** 0.3.1 claimed the review gate was "enforced, not promised". It was not. The skill collected your consent at Step 0 and no file anywhere told it to call the tool, so every sentence after that described a mode the session had never entered. Step 6 now calls `EnterPlanMode`, writes the finished plan into the file the harness designates, then calls `ExitPlanMode` to hold the approval gate ... in that order. The defect was reproduced live against 0.3.1 first: consent given, zero tool calls, session still writable.
+- **The consent question promised more than it delivered.** It offered "this whole planning pass ... locked read-only", but the lock starts when the plan is ready, not at the top of the pass, because Steps 1 to 5 still write their research artifacts normally. The question now describes what actually happens. Nothing gets built before your go either way, which was always true.
+- **The call is pinned to Step 6 and never earlier**, with the reason stated in both the skill and the reference: plan mode makes the harness plan file the only writable file, so entering early would stop the skill writing its own working artifacts.
+
+### Changed
+- **plan-builder's interview mechanics moved into `references/asking-questions.md`**, where the round rules already live. The round-cap exemption is now scoped to the heavy tier explicitly, so a plan built in the chat with no crew keeps the normal cap ... which is what `plan-engine.md` always said.
+
 ## [0.3.1] - 2026-08-22
 
 ### Added
