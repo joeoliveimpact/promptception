@@ -2,7 +2,7 @@
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "promptception",
   "description": "Turns a messy, spoken-style brain-dump into a clear, complete prompt, then runs it. Talk or dictate what you want (half-sentences fine) and Promptception builds the prompt you would have written if you were a prompt expert, shows it to you, asks only the questions that close real gaps, and executes on your go. Beginner-first: it teaches prompting by showing, not lecturing, and offers to build a full plan when the ask is bigger than one prompt. Also ships Orchestrator Mode: /orchestrator-mode runs big cross-system work through tiered subagents (scout, reader, builder, checker, premortem) with both-directions verification, and /premortem red-teams any draft plan before it ships. Plus four builders that craft the ideal prompt for Claude Code's newest commands: /goal-builder, /loop-builder, /schedule-builder, and /plan-builder for jobs too big for a single prompt.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": {
     "name": "Joe Olive",
     "email": "joe@engineforimpact.com"

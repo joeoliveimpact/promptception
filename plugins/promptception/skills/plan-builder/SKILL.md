@@ -37,7 +37,7 @@ single step runs — nothing gets built until you say go."* The gate is real and
 Step 6; they shouldn't have to discover it when the plan lands.
 
 **Where the preflight finds an `EnterPlanMode` capability, ask one more question here:** run this
-whole planning pass in plan mode, locked read-only until they approve? Wording, consent and
+pass in plan mode, locking read-only once the plan's ready? Wording, consent and
 mechanics: `${CLAUDE_PLUGIN_ROOT}/references/plan-mode-gate.md`.
 
 **Nobody there to answer?** On a headless or unattended run, don't block: take the safest stated
@@ -92,12 +92,8 @@ researched plan replaces it.
 
 Interview against the **Plan Rubric** in the engine file. Ask using `${CLAUDE_PLUGIN_ROOT}/references/asking-questions.md` — popup first, numbered text when the popup isn't there, same questions either way.
 
-**No question cap here.** The 3-5-questions, max-3-rounds rule is for prompt-sized jobs; plans are
-exempt. Rounds run until every blank is resolved, and 8 to 10 questions is normal for a real plan.
-The only per-batch limit is the popup itself, 4 at a time: batches of up to 4, as many rounds as
-the blanks demand. The trade flips because the crew runs unattended after this, so an unanswered
-blank becomes a stall or a guess mid-flight: completeness beats brevity. Never-re-ask is
-unchanged, new blanks only.
+**No question cap here** ... the heavy tier is exempt from the round cap; the exemption and its
+reasoning live in `${CLAUDE_PLUGIN_ROOT}/references/asking-questions.md`.
 
 **The moment the last blank resolves, orchestrator mode kicks on by itself.** Finishing the
 interview IS the trigger: no pause before the crew, no separate "go orchestrator" ask. Execution
@@ -105,8 +101,6 @@ is always orchestrated too, builder plus independent checker, no solo path. The 
 exits are Step 2's downshift and Step 3's honest downgrade, both before the interview.
 
 **This interview IS orchestrator-mode's Step 0.** Everything that needs a human decision gets batched and asked now, so the research half can run without stopping to tap them on the shoulder. A question you discover halfway through planning belonged in this round.
-
-**Every question stays in this session. Always.** Helper agents read, search and report — they cannot ask the user anything. When an agent comes back holding an open question, **you** ask it here, in the main chat. That's a legitimate reason to fire another round under the round rules. Never write a dispatch that tells an agent to "ask the user" — it will stall or guess, and the interview breaks quietly.
 
 ## Step 5 — Plan in orchestrator mode
 
@@ -125,8 +119,15 @@ Add one plain line naming what the stress test changed: *"The premortem caught t
 
 **Then stop and wait for an explicit go. Creating that pause is this skill's own job.**
 
-**Where plan mode is active, `ExitPlanMode` IS this gate** ... it presents the finished plan and
-requires approval before anything runs (`${CLAUDE_PLUGIN_ROOT}/references/plan-mode-gate.md`).
+**Where they said yes at Step 0, the call comes first, here.** Call `EnterPlanMode`, and the
+harness answers by designating a plan file. Write the finished plan into that file. Then call
+`ExitPlanMode`, which presents it and requires approval before anything runs ... that tool IS
+this gate (`${CLAUDE_PLUGIN_ROOT}/references/plan-mode-gate.md`).
+
+**Never call `EnterPlanMode` before this step** ... everything Steps 1 to 5 produce is written
+while the session can still write anywhere. Where the tool holds the gate, don't stack the skill's
+own hand-rolled pause on top of it.
+
 What follows is the fallback for where that tool is absent, and there it isn't optional.
 
 Without that tool, do not lean on a permission mode to hold the gate for you. Some surfaces have no design-before-acting phase at all, so a gate handed off to one may simply not exist — and the plan runs unreviewed. Present, ask, wait for a yes. Never read enthusiasm about the plan as permission to start building it. And never tell them which app or environment they're in; probe the capability instead — `${CLAUDE_PLUGIN_ROOT}/references/capability-probe.md`.

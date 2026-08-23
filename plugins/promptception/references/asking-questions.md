@@ -25,6 +25,17 @@ Same questions, same wording, same why-lines, same round rules. Only the deliver
 - **Re-show the improved artifact between rounds** — the prompt, the routine, the goal, the plan, whatever this skill is building. They watch it get sharper with each answer. That visible before → after IS the lesson.
 - **One question per real ambiguity.** If the answer wouldn't change what gets built, don't ask it.
 
+### The heavy tier is the exception to the round cap
+
+**The 3–5-questions, max-3-rounds rule above is for prompt-sized jobs. The heavy tier ... the one
+that hands the job to a crew ... is exempt.** There, rounds run until every blank is resolved, and
+8 to 10 questions is normal. The only per-batch limit is the popup's own 4: batches of up to 4, as
+many rounds as the blanks demand.
+
+The trade flips there because the crew runs unattended after the interview, so an unanswered blank
+becomes a stall or a guess mid-flight, and completeness beats brevity. A plan built in the chat
+with no crew keeps the normal round cap. Never-re-ask is unchanged: new blanks only.
+
 ## Beginner teach mode: the why rides in the option description
 
 Beginner is the default. In beginner mode every question carries its **why** — one plain sentence tying the gap to the result.
