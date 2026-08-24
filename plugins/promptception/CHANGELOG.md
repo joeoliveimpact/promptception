@@ -2,6 +2,11 @@
 
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.3.3] - 2026-08-24
+
+### Removed
+- **The `commands/` directory, all seven routers.** They were the bug. On Claude Code Desktop a command file shadows a same-named skill: the command body is served and the skill body never loads, so every promptception skill launched empty. Clients hit this from 0.3.1 onward. The routers' own line, "invoke the X skill and pass along $ARGUMENTS", is text the model reads, not a lookup that fires, so nothing loaded the skill. 0.3.1's changelog said these routers covered "surfaces where a command registers and shadows a same-named skill" ... they were that shadow, on the one surface clients use. Deleting them restores 0.3.0's shape. Nothing you type changes: `/promptception:plan-builder` and its six siblings still resolve, because skills are slash-invocable without a command file. Proven both directions before and after the fix: a colliding skill returned router text only while a non-colliding control returned its full body.
+
 ## [0.3.2] - 2026-08-23
 
 ### Fixed
